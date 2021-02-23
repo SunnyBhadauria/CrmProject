@@ -6,8 +6,22 @@ public class Customer {
 	private String  custName;
 	private double giftVoucher;
 	
+	private int  BillId;
+	private int	     paymentId;
+	
 	private Bill bill;
 	private Payment payment;
+	
+	
+	
+	public Customer(int custID, String custName, double giftVoucher, int billId, int paymentId) {
+		super();
+		this.custID = custID;
+		this.custName = custName;
+		this.giftVoucher = giftVoucher;
+		BillId = billId;
+		this.paymentId = paymentId;
+	}
 	public Customer(int custID, String custName, double giftVoucher, Bill bill, Payment payment) {
 		super();
 		this.custID = custID;

@@ -1,5 +1,5 @@
 package com.coforge.javaCrmServiceInterface;
 
-public interface CrmServiceInterface {
+public interface EmployeeInfoService {
 
 }

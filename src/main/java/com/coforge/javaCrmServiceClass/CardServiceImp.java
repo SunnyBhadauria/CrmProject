@@ -1,5 +1,5 @@
 package com.coforge.javaCrmServiceClass;
 
-public class CrmServiceClass {
+public class CardServiceImp {
 
 }
