@@ -6,27 +6,45 @@ public class Bill {
 
 	private Product product;
 
+	
+	
+	public Bill() {
+		super();
+	}
+
+
+
 	public Bill(int billId, Product product) {
 		super();
 		BillId = billId;
 		this.product = product;
 	}
 
+
+
 	public int getBillId() {
 		return BillId;
 	}
+
+
 
 	public void setBillId(int billId) {
 		BillId = billId;
 	}
 
+
+
 	public Product getProduct() {
 		return product;
 	}
 
+
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -35,6 +53,8 @@ public class Bill {
 		result = prime * result + BillId;
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -50,10 +70,14 @@ public class Bill {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Bill [BillId=" + BillId + ", product=" + product + "]";
 	}
+
 	
+	 
 	
 }

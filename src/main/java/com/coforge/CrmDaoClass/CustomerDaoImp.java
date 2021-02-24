@@ -26,10 +26,21 @@ public class CustomerDaoImp implements CustomerDao {
 	
 	private static Set<Customer>setCustomer;
 	
+	private static Customer customer;
+	
+	
+	public static Customer getCustomer() {
+		return customer;
+	}
+	public static void setCustomer(Customer customer) {
+		CustomerDaoImp.customer = customer;
+	}
 	public	CustomerDaoImp()
 	{
 
 	setCustomer=new TreeSet<Customer>();
+	customer=new Customer();
+	
 	}
 	public static int length(int num)
 	{
@@ -59,26 +70,40 @@ public class CustomerDaoImp implements CustomerDao {
 			Scanner sc=new Scanner(System.in);
 					
 			int id,flag=1,count;
-			System.out.println("Enter customer id name Gift voucher BillId,PaymentId");
+			System.out.println("Enter customer id, name Gift voucher " );
 	          do
 	           {
 		           try 
 		           {
-		                	id=	sc.nextInt();		
+		                	id=	sc.nextInt();
+		                	customer.setCustID(id);
 					     		if(CustomerDaoImp.length(id)>6)
 					     		{
 					     			throw new MyException("Id limit exceed 6 length");
 					     		}
 					     			else
 					     			{	
-					     			pst.setInt(1, id);
-					     			pst.setString(2, sc.next());
-					     			pst.setInt(3, sc.nextInt());
+					     			customer.setCustName(sc.next());
+					     			customer.setGiftVoucher(sc.nextInt());
 					     			
-					     			pst.setInt(4, sc.nextInt());
-					     			pst.setInt(5, sc.nextInt());
-
+					     			pst.setInt(1, id);
+					     			pst.setString(2, customer.getCustName());
+					     			pst.setInt(3,customer.getGiftVoucher());
+					     			
+					     			 customer.setBill(BillDaoImp.getBill());
+						     			pst.setInt(4, customer.getBill().getBillId());
+					     			
+					     			 customer.setPayment(PaymentDaoImp.getPay());
+				     	             pst.setInt(5, customer.getPayment().getPaymentId());
+				     	             
+				     	             
+				     	             //setCustomer.add(customer);
+				     	             
+				     	             
 					     			count = pst.executeUpdate();
+					     			
+					     		//	setCustomer.add(customer);
+					     			
 					     			System.out.println("the no of row effected is "+count);
 					     			flag=0;
 					     			}
@@ -122,8 +147,58 @@ public class CustomerDaoImp implements CustomerDao {
 		
 	}
 
-	public void displayCustomer() throws SQLException {
-		// TODO Auto-generated method stub
+	public void displayCustomer() throws SQLException 
+	{
+		try {
+			con=DbConnect.dbConnect();
+		    con.setAutoCommit(false);
+		    st=con.createStatement();
+		    
+//		    String str="insert into Customer values (?,?)";
+//		 			pst=con.prepareStatement(str);
+//		    
+//		    customer.setBill(BillDaoImp.getBill());
+// 			pst.setInt(4, customer.getBill().getBillId());
+//			
+//			 customer.setPayment(PaymentDaoImp.getPay());
+//          pst.setInt(5, customer.getPayment().getPaymentId());
+//			
+//		    setCustomer.add(customer);
+//	
+	       String query="select * from Customer";
+    
+          rs=st.executeQuery(query);
+    
+    System.out.println("Retrieved data is ");
+    
+	    while(rs.next())
+	    {
+	  	  System.out.println(rs.getInt(1)+" : "+rs.getString(2)+" : "+rs.getInt(3)+" : "+rs.getInt(4)+" : "+rs.getInt(5));
+	  
+		  
+	    }
+    } catch(Exception e)
+	{
+		e.printStackTrace();
+		con.rollback();
+	 }
+  finally 
+  {
+		try {
+			con.commit();
+			st.close();
+			con.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+							
+   }
+		
+		
+		
+		
 		
 	}
 

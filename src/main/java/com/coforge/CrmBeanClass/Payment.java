@@ -15,6 +15,11 @@ public class Payment {
 		this.modeOfPay = modeOfPay;
 		this.discount = discount;
 	}
+	
+	public Payment() {
+		super();
+	}
+
 	public int getPaymentId() {
 		return paymentId;
 	}
