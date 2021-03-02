@@ -19,6 +19,9 @@ public class Card {
 		this.goldCardCumulativeTotal = goldCardCumulativeTotal;
 		this.cumulativePoint = cumulativePoint;
 	}
+	public Card() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getCardNo() {
 		return cardNo;
 	}

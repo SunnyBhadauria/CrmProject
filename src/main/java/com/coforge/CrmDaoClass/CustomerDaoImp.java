@@ -70,7 +70,7 @@ public class CustomerDaoImp implements CustomerDao {
 			Scanner sc=new Scanner(System.in);
 					
 			int id,flag=1,count;
-			System.out.println("Enter customer id, name Gift voucher " );
+			System.out.println("Enter customer id, name,Gift voucher " );
 	          do
 	           {
 		           try 
